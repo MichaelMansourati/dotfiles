@@ -1,0 +1,7 @@
+# Global ignore, loaded from ~/.config/git/ignore.
+.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.claude/settings.local.json

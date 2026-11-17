@@ -1,0 +1,20 @@
+# shellcheck shell=bash
+# Entry point. install.sh appends a line to ~/.bashrc that sources this file.
+# Interactive shells only; scripts and other non-interactive shells skip everything.
+case $- in
+  *i*) ;;
+  *) return 0 ;;
+esac
+
+_dotfiles_shell_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+for _f in exports aliases functions prompt; do
+  if [ -r "$_dotfiles_shell_dir/$_f.sh" ]; then
+    . "$_dotfiles_shell_dir/$_f.sh"
+  fi
+done
+unset _f _dotfiles_shell_dir
+
+# Machine-local, uncommitted overrides (work-only aliases, tokens, etc.) go here.
+if [ -r "$HOME/.bashrc.local" ]; then
+  . "$HOME/.bashrc.local"
+fi

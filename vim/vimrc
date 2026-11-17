@@ -1,0 +1,43 @@
+set nocompatible
+filetype plugin indent on
+syntax on
+
+set encoding=utf-8
+set hidden
+set number
+set ruler
+set laststatus=2
+set showcmd
+set wildmenu
+set scrolloff=5
+set backspace=indent,eol,start
+
+" Search
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+nnoremap <silent> <Esc><Esc> :nohlsearch<CR>
+
+" Indentation: 4 spaces by default
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set autoindent
+
+" Persistent undo, kept out of the working tree
+if has('persistent_undo')
+  let s:undo = expand('~/.vim/undo')
+  if !isdirectory(s:undo)
+    silent! call mkdir(s:undo, 'p', 0700)
+  endif
+  let &undodir = s:undo
+  set undofile
+endif
+
+augroup dotfiles
+  autocmd!
+  autocmd FileType yaml,json,javascript,typescript,html,css setlocal tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd FileType make setlocal noexpandtab
+augroup END
