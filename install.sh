@@ -101,5 +101,4 @@ else
 fi
 
 echo
-echo "Done. Start a new shell (or run: exec bash -l) to pick everything up."
 echo "Per-machine overrides go in ~/.bashrc.local; your git identity stays in ~/.gitconfig."
